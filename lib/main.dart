@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login/login_screen.dart';
+import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: defaultTheme,
-      home: const LoginScreen(),
+      home: const SignUpScreen(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: 416,
+                height: 514,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Привет!',
+                            'Регистрация',
                             style: theme.textTheme.displayMedium,
                             textAlign: TextAlign.center,
                           ),
@@ -57,12 +57,46 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 292,
+                      height: 390,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            height: 218,
+                            //text+textformfield
+                            height: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Ваше имя',
+                                    style: theme.textTheme.titleMedium,
+                                  ),
+                                ),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'xxxxxxxx',
+                                    hintStyle: theme.textTheme.bodyMedium!
+                                        .apply(letterSpacingDelta: 2),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(14),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    filled: true,
+                                    fillColor: theme.colorScheme.lightGrey,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                      horizontal: 14,
+                                    ),
+                                  ),
+                                  style: theme.textTheme.bodyMedium,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 298,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -160,31 +194,46 @@ class LoginScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    'Восстановить',
-                                    style: theme.textTheme.labelMedium,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 335,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                backgroundColor: theme.colorScheme.blue,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 18,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: theme.colorScheme.lightGrey,
+                                      ),
+                                      child: const ImageIcon(
+                                        AssetImage('icons/shield.png'),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12,),
+                                    Flexible(
+                                      child: Text(
+                                        'Даю согласие на обработку персональных данных',
+                                        style: theme.textTheme.titleMedium,
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              ),
-                              child: Text(
-                                'Войти',
-                                style: theme.textTheme.labelLarge,
-                              ),
+                                SizedBox(
+                                  width: 335,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: theme.colorScheme.blue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Зарегистрироваться',
+                                      style: theme.textTheme.labelLarge,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -195,12 +244,12 @@ class LoginScreen extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'Вы впервые? ',
+                  text: 'Есть аккаунт? ',
                   style: theme.textTheme.titleMedium!
                       .apply(color: theme.colorScheme.darkGrey),
                   children: [
                     TextSpan(
-                      text: 'Создать пользователя',
+                      text: 'В ойти',
                       style: theme.textTheme.titleMedium,
                     ),
                   ],
