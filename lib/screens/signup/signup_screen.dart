@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/login/login_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -10,7 +11,9 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton.filled(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
             backgroundColor: theme.colorScheme.onPrimary,
@@ -77,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
                                 TextFormField(
                                   decoration: InputDecoration(
                                     hintText: 'xxxxxxxx',
-                                    hintStyle: theme.textTheme.bodyMedium!
+                                    hintStyle: theme.textTheme.bodySmall!
                                         .apply(letterSpacingDelta: 2),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(14),
@@ -90,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                                       horizontal: 14,
                                     ),
                                   ),
-                                  style: theme.textTheme.bodyMedium,
+                                  style: theme.textTheme.bodySmall,
                                 ),
                               ],
                             ),
@@ -125,7 +128,7 @@ class SignUpScreen extends StatelessWidget {
                                               decoration: InputDecoration(
                                                 hintText: 'xyz@gmail.com',
                                                 hintStyle:
-                                                    theme.textTheme.bodyMedium,
+                                                    theme.textTheme.bodySmall,
                                                 border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(14),
@@ -140,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
                                                   horizontal: 14,
                                                 ),
                                               ),
-                                              style: theme.textTheme.bodyMedium,
+                                              style: theme.textTheme.bodySmall,
                                             ),
                                           ],
                                         ),
@@ -165,7 +168,7 @@ class SignUpScreen extends StatelessWidget {
                                               decoration: InputDecoration(
                                                 hintText: '••••••••',
                                                 hintStyle:
-                                                    theme.textTheme.bodyMedium,
+                                                    theme.textTheme.bodySmall,
                                                 border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(14),
@@ -186,7 +189,7 @@ class SignUpScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              style: theme.textTheme.bodyMedium,
+                                              style: theme.textTheme.bodySmall,
                                             ),
                                           ],
                                         ),
@@ -207,7 +210,9 @@ class SignUpScreen extends StatelessWidget {
                                         AssetImage('icons/shield.png'),
                                       ),
                                     ),
-                                    const SizedBox(width: 12,),
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
                                     Flexible(
                                       child: Text(
                                         'Даю согласие на обработку персональных данных',
@@ -216,9 +221,9 @@ class SignUpScreen extends StatelessWidget {
                                     )
                                   ],
                                 ),
-                                SizedBox(
-                                  width: 335,
-                                  height: 50,
+                                Container(
+                                  constraints:
+                                      const BoxConstraints.expand(height: 50),
                                   child: ElevatedButton(
                                     onPressed: () {},
                                     style: TextButton.styleFrom(
@@ -242,17 +247,26 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: 'Есть аккаунт? ',
-                  style: theme.textTheme.titleMedium!
-                      .apply(color: theme.colorScheme.darkGrey),
-                  children: [
-                    TextSpan(
-                      text: 'В ойти',
-                      style: theme.textTheme.titleMedium,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
                     ),
-                  ],
+                  );
+                },
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Есть аккаунт? ',
+                    style: theme.textTheme.titleMedium!
+                        .apply(color: theme.colorScheme.darkGrey),
+                    children: [
+                      TextSpan(
+                        text: 'Войти',
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

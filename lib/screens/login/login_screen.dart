@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
+import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -10,7 +12,9 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton.filled(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
             backgroundColor: theme.colorScheme.onPrimary,
@@ -91,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                                               decoration: InputDecoration(
                                                 hintText: 'xyz@gmail.com',
                                                 hintStyle:
-                                                    theme.textTheme.bodyMedium,
+                                                    theme.textTheme.bodySmall,
                                                 border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(14),
@@ -106,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                                                   horizontal: 14,
                                                 ),
                                               ),
-                                              style: theme.textTheme.bodyMedium,
+                                              style: theme.textTheme.bodySmall,
                                             ),
                                           ],
                                         ),
@@ -131,7 +135,7 @@ class LoginScreen extends StatelessWidget {
                                               decoration: InputDecoration(
                                                 hintText: '••••••••',
                                                 hintStyle:
-                                                    theme.textTheme.bodyMedium,
+                                                    theme.textTheme.bodySmall,
                                                 border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(14),
@@ -152,7 +156,7 @@ class LoginScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              style: theme.textTheme.bodyMedium,
+                                              style: theme.textTheme.bodySmall,
                                             ),
                                           ],
                                         ),
@@ -162,17 +166,27 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text(
-                                    'Восстановить',
-                                    style: theme.textTheme.labelMedium,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ResetPasswordScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Восстановить',
+                                      style: theme.textTheme.labelMedium,
+                                    ),
                                   ),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 335,
-                            height: 50,
+                          Container(
+                            constraints:
+                                const BoxConstraints.expand(height: 50),
                             child: ElevatedButton(
                               onPressed: () {},
                               style: TextButton.styleFrom(
@@ -193,17 +207,26 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: 'Вы впервые? ',
-                  style: theme.textTheme.titleMedium!
-                      .apply(color: theme.colorScheme.darkGrey),
-                  children: [
-                    TextSpan(
-                      text: 'Создать пользователя',
-                      style: theme.textTheme.titleMedium,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
                     ),
-                  ],
+                  );
+                },
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Вы впервые? ',
+                    style: theme.textTheme.titleMedium!
+                        .apply(color: theme.colorScheme.darkGrey),
+                    children: [
+                      TextSpan(
+                        text: 'Создать пользователя',
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
