@@ -2,9 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';
+import 'package:flutter_application_1/widgets/input_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String emailValue = '';
+  final _emailKey = GlobalKey<FormFieldState>();
+
+  String passwordValue = '';
+  final _passwordKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,90 +88,23 @@ class LoginScreen extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SizedBox(
-                                        //text+textformfield
-                                        height: 80,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                'Email',
-                                                style:
-                                                    theme.textTheme.titleMedium,
-                                              ),
-                                            ),
-                                            TextFormField(
-                                              decoration: InputDecoration(
-                                                hintText: 'xyz@gmail.com',
-                                                hintStyle:
-                                                    theme.textTheme.bodySmall,
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(14),
-                                                  borderSide: BorderSide.none,
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    theme.colorScheme.lightGrey,
-                                                contentPadding:
-                                                    const EdgeInsets.symmetric(
-                                                  vertical: 16,
-                                                  horizontal: 14,
-                                                ),
-                                              ),
-                                              style: theme.textTheme.bodySmall,
-                                            ),
-                                          ],
-                                        ),
+                                      InputField(
+                                        fieldKey: _emailKey,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            emailValue = value;
+                                          });
+                                        },
+                                        type: FieldType.email,
                                       ),
-                                      SizedBox(
-                                        //text+textformfield
-                                        height: 80,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                'Пароль',
-                                                style:
-                                                    theme.textTheme.titleMedium,
-                                              ),
-                                            ),
-                                            TextFormField(
-                                              obscureText: true,
-                                              decoration: InputDecoration(
-                                                hintText: '••••••••',
-                                                hintStyle:
-                                                    theme.textTheme.bodySmall,
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(14),
-                                                  borderSide: BorderSide.none,
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    theme.colorScheme.lightGrey,
-                                                contentPadding:
-                                                    const EdgeInsets.symmetric(
-                                                  vertical: 16,
-                                                  horizontal: 14,
-                                                ),
-                                                suffixIcon: IconButton(
-                                                  onPressed: () {},
-                                                  icon: const ImageIcon(
-                                                    AssetImage('icons/eye.png'),
-                                                  ),
-                                                ),
-                                              ),
-                                              style: theme.textTheme.bodySmall,
-                                            ),
-                                          ],
-                                        ),
+                                      InputField(
+                                        fieldKey: _passwordKey,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            passwordValue = value;
+                                          });
+                                        },
+                                        type: FieldType.password,
                                       ),
                                     ],
                                   ),
@@ -188,7 +133,10 @@ class LoginScreen extends StatelessWidget {
                             constraints:
                                 const BoxConstraints.expand(height: 50),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _emailKey.currentState!.validate();
+                                _passwordKey.currentState!.validate();
+                              },
                               style: TextButton.styleFrom(
                                 backgroundColor: theme.colorScheme.blue,
                                 shape: RoundedRectangleBorder(
