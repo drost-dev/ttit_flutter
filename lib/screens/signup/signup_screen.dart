@@ -175,12 +175,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 height: 50),
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            if (_nameKey.currentState!
-                                                    .validate() &&
-                                                _emailKey.currentState!
-                                                    .validate() &&
-                                                _passwordKey.currentState!
-                                                    .validate()) {
+                                            bool nameValid = _nameKey.currentState!.validate();
+                                            bool emailValid = _emailKey.currentState!.validate();
+                                            bool passwordValid = _passwordKey.currentState!.validate();
+                                            
+                                            if (nameValid && emailValid && passwordValid) {
                                               _bloc.add(
                                                 SignUpScreenRegister(
                                                   name: nameValue,

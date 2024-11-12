@@ -8,16 +8,15 @@ part 'sign_up_screen_state.dart';
 
 class SignUpScreenBloc extends Bloc<SignUpScreenEvent, SignUpScreenState> {
   SignUpScreenBloc() : super(SignUpScreenLoading()) {
-    on<SignUpScreenEvent>((event, emit) {
+    on<SignUpScreenEvent>((event, emit) async {
       switch (event) {
         case SignUpScreenLoad():
-          //load
           emit(SignUpScreenLoaded());
           break;
         case SignUpScreenRegister():
           var sbRepo = GetIt.I<SupabaseRepo>();
           try {
-            sbRepo.signUp(
+            await sbRepo.signUp(
               event.name,
               event.email,
               event.password,

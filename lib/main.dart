@@ -11,6 +11,8 @@ import 'package:get_it/get_it.dart';
 Future<void> main() async {
   usePathUrlStrategy();
   SupabaseRepo supabaseRepo = await SupabaseRepo.init();
+  //TODO: remove sugnout
+  await supabaseRepo.trySignOut();
   GetIt.I.registerSingleton<SupabaseRepo>(supabaseRepo);
   runApp(const MyApp());
 }

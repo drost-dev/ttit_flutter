@@ -4,4 +4,13 @@ abstract class AbstractDatabaseRepo {
     String email,
     String password,
   );
+
+  void signIn(
+    String email,
+    String password,
+  );
+
+  void trySignOut();
+
+  void restoreEmailPassword(String email);
 }
