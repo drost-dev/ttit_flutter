@@ -35,7 +35,8 @@ Map<FieldType, Map<Params, dynamic>> settings = {
   FieldType.email: {
     Params.title: 'Email',
     Params.validator: (String? value) {
-      if (RegExp(r'^[a-z0-9.]+\@[a-z0-9]+\.[a-z]{2,}').stringMatch(value ?? '') ==
+      if (RegExp(r'^[a-z0-9.]+\@[a-z0-9]+\.[a-z]{2,}')
+              .stringMatch(value ?? '') ==
           value) {
         return null;
       } else {
@@ -70,16 +71,16 @@ Map<FieldType, Map<Params, dynamic>> settings = {
 };
 
 class InputField extends StatelessWidget {
-  InputField({
+  const InputField({
     super.key,
     required this.fieldKey,
     required this.onChanged,
     required this.type,
   });
 
-  var fieldKey = GlobalKey<FormFieldState>();
-  void Function(String)? onChanged;
-  FieldType type;
+  final GlobalKey<FormFieldState> fieldKey;
+  final void Function(String)? onChanged;
+  final FieldType type;
 
   @override
   Widget build(BuildContext context) {
@@ -88,43 +89,47 @@ class InputField extends StatelessWidget {
     return Container(
       //text+textformfield
       constraints: const BoxConstraints(minHeight: 80),
-      child: Flexible(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                settings[type]![Params.title],
-                style: theme.textTheme.titleMedium,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // child: Flexible(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              settings[type]![Params.title],
+              style: theme.textTheme.titleMedium,
+            ),
+          ),
+          TextFormField(
+            key: fieldKey,
+            validator: settings[type]![Params.validator],
+            onChanged: onChanged,
+            inputFormatters: settings[type]![Params.inputFormatters],
+            decoration: InputDecoration(
+              hintText: settings[type]![Params.hintText],
+              hintStyle: theme.textTheme.bodySmall!
+                  .apply(letterSpacingDelta: type == FieldType.name ? 2 : 0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide.none,
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.lightGrey,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 14,
               ),
             ),
-            TextFormField(
-              key: fieldKey,
-              validator: settings[type]![Params.validator],
-              onChanged: onChanged,
-              inputFormatters: settings[type]![Params.inputFormatters],
-              decoration: InputDecoration(
-                hintText: settings[type]![Params.hintText],
-                hintStyle: theme.textTheme.bodySmall!
-                    .apply(letterSpacingDelta: type == FieldType.name ? 2 : 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: theme.colorScheme.lightGrey,
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 14,
-                ),
-              ),
-              obscureText: type == FieldType.password ? true : false,
-              style: theme.textTheme.bodySmall,
-            ),
-          ],
-        ),
+            obscureText: type == FieldType.password ? true : false,
+            style: theme.textTheme.bodySmall,
+          ),
+        ],
       ),
+      //),
     );
   }
 }

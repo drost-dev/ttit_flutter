@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/login/bloc/bloc/login_screen_bloc.dart';
+import 'package:flutter_application_1/screens/login/bloc/login_screen_bloc.dart';
 import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';

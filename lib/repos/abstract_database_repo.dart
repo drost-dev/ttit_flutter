@@ -12,5 +12,10 @@ abstract class AbstractDatabaseRepo {
 
   void trySignOut();
 
-  void restoreEmailPassword(String email);
+  void signInOtp(String email);
+
+  void verifyOtp(
+    String email,
+    String otpCode,
+  );
 }

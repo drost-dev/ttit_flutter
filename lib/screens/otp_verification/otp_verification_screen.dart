@@ -5,7 +5,8 @@ import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
-  const OtpVerificationScreen({super.key});
+  const OtpVerificationScreen({super.key, required this.email});
+  final String email;
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();

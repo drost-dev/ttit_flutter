@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login/login_screen.dart';
-import 'package:flutter_application_1/screens/signup/bloc/bloc/sign_up_screen_bloc.dart';
+import 'package:flutter_application_1/screens/signup/bloc/sign_up_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,8 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void initState() {
-    super.initState();
     _bloc.add(SignUpScreenLoad());
+    super.initState();
   }
 
   @override
@@ -242,11 +242,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         } else if (state is SignUpScreenCompleted) {
           return Placeholder();
         } else if (state is SignUpScreenError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.e),
-            ),
-          );
+          return Text('error! ${state.e}');
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   SnackBar(
+          //     content: Text('aaa')//(state.e),
+          //   ),
+          // );
         }
         return const Center(
           child: Text('uncaughth error'),
@@ -255,3 +256,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+
