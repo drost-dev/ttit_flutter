@@ -54,11 +54,12 @@ class SupabaseRepo implements AbstractDatabaseRepo {
 
   @override
   Future<void> verifyOtp(String email, String otpCode) async {
-    await _sb.auth.verifyOTP(
+    var s = await _sb.auth.verifyOTP(
       type: OtpType.email,
       email: email,
       token: otpCode,
     );
+    print(s.user?.id);
   }
 
   void info() {

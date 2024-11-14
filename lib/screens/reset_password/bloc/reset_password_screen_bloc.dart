@@ -18,10 +18,10 @@ class ResetPasswordScreenBloc
           SupabaseRepo sbRepo = GetIt.I.get<SupabaseRepo>();
           try {
             sbRepo.signInOtp(event.email);
+            emit(ResetPasswordScreenCompleted(email: event.email));
           } catch (e) {
             emit(ResetPasswordScreenError(e));
           }
-          emit(ResetPasswordScreenCompleted(email: event.email));
           break;
       }
     });

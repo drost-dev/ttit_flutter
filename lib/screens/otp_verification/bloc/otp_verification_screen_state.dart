@@ -1,6 +1,6 @@
 part of 'otp_verification_screen_bloc.dart';
 
-sealed class OtpVerificationScreenState extends Equatable {
+abstract class OtpVerificationScreenState extends Equatable {
   const OtpVerificationScreenState();
   
   @override
