@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/home/home_screen.dart';
 import 'package:flutter_application_1/screens/login/bloc/login_screen_bloc.dart';
 import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
@@ -32,36 +33,59 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return BlocBuilder(
-      bloc: _bloc,
-      builder: (context, state) {
-        switch (state) {
-          case LoginScreenLoading():
-            return const CircularProgressIndicator();
-          case LoginScreenLoaded():
-            return Scaffold(
-              appBar: AppBar(
-                leading: IconButton.filled(
-                  onPressed: () {
-                    Navigator.of(context).maybePop();
-                  },
-                  icon: Image.asset('assets/icons/arrow_left.png'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: theme.colorScheme.onPrimary,
-                  ),
-                ),
-              ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ).add(
-                  const EdgeInsets.only(
-                    top: 11,
-                    bottom: 47,
-                  ),
-                ),
-                child: Center(
-                  child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton.filled(
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+          icon: Image.asset('assets/icons/arrow_left.png'),
+          style: TextButton.styleFrom(
+            backgroundColor: theme.colorScheme.onPrimary,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ).add(
+          const EdgeInsets.only(
+            top: 11,
+            bottom: 47,
+          ),
+        ),
+        child: Center(
+          child: BlocConsumer(
+            bloc: _bloc,
+            listener: (context, state) {
+              switch (state) {
+                case LoginScreenError():
+                  final snackBar = SnackBar(
+                    content: GestureDetector(
+                      onTap: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                      child: Text(state.e),
+                    ),
+                    behavior: SnackBarBehavior.floating,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  break;
+                case LoginScreenCompleted():
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
+                  break;
+              }
+            },
+            builder: (context, state) {
+              switch (state) {
+                case LoginScreenLoading():
+                  return const CircularProgressIndicator();
+                case LoginScreenLoaded():
+                  return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -155,9 +179,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const BoxConstraints.expand(height: 50),
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        bool emailValid = _emailKey.currentState!.validate();
-                                        bool passwordValid = _passwordKey.currentState!.validate();
-                                        
+                                        bool emailValid =
+                                            _emailKey.currentState!.validate();
+                                        bool passwordValid = _passwordKey
+                                            .currentState!
+                                            .validate();
+
                                         if (emailValid && passwordValid) {
                                           _bloc.add(
                                             LoginScreenLogin(
@@ -209,22 +236,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            );
-          case LoginScreenCompleted():
-            return const Placeholder();
-          case LoginScreenError():
-            return Center(
-              child: Text('error ${state.e}'),
-            );
-          default:
-            return const Center(
-              child: Text('unknown error'),
-            );
-        }
-      },
+                  );
+                default:
+                  return const CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }

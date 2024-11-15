@@ -25,17 +25,14 @@ class OtpVerificationScreenBloc
               emit(OtpVerificationScreenSuccess());
             } catch (e) {
               switch (e) {
-                case AuthApiException e:
-                  emit(OtpVerificationScreenError(e: e.message));
-                  break;
-                case AuthException e:
+                case AuthException():
                   emit(OtpVerificationScreenError(e: e.message));
                   break;
                 default:
                   emit(OtpVerificationScreenError(e: e));
               }
-              emit(OtpVerificationScreenLoaded());
             }
+            emit(OtpVerificationScreenLoaded());
             break;
             
           case OtpVerificationScreenResend():
@@ -44,7 +41,7 @@ class OtpVerificationScreenBloc
               await sbRepo.signInOtp(event.email);
             } catch (e) {
               switch (e) {
-                case AuthException e:
+                case AuthException():
                   emit(OtpVerificationScreenError(e: e.message));
                   break;
                 default:
@@ -52,6 +49,7 @@ class OtpVerificationScreenBloc
                   break;
               }
             }
+            emit(OtpVerificationScreenLoaded());
             break;
         }
       },
