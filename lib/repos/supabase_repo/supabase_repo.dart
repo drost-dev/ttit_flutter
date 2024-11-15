@@ -33,13 +33,10 @@ class SupabaseRepo implements AbstractDatabaseRepo {
 
   @override
   Future<void> signIn(String email, String password) async {
-    print('tut1');
-    var a = await _sb.auth.signInWithPassword(
+    await _sb.auth.signInWithPassword(
       email: email,
       password: password,
     );
-    print('tut2');
-    print(a.user?.userMetadata?['name']);
   }
 
   @override
@@ -54,16 +51,13 @@ class SupabaseRepo implements AbstractDatabaseRepo {
 
   @override
   Future<void> verifyOtp(String email, String otpCode) async {
-    var s = await _sb.auth.verifyOTP(
+    await _sb.auth.verifyOTP(
       type: OtpType.email,
       email: email,
       token: otpCode,
     );
-    print(s.user?.id);
+    return;
   }
 
-  void info() {
-    print(_sb.accessToken);
-    print(_sb.auth.currentUser?.userMetadata?['name']);
-  }
+  //void info() {}
 }

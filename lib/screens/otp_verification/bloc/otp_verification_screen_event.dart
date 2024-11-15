@@ -24,3 +24,12 @@ class OtpVerificationScreenSignIn extends OtpVerificationScreenEvent {
         otpCode,
       ];
 }
+
+class OtpVerificationScreenResend extends OtpVerificationScreenEvent {
+  const OtpVerificationScreenResend({required this.email});
+
+  final String email;
+
+  @override
+  List<Object> get props => [email];
+}

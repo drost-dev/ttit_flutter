@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/home/home_screen.dart';
 import 'package:flutter_application_1/screens/otp_verification/bloc/otp_verification_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,31 +69,54 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       });
     }
 
-    return BlocBuilder(
-      bloc: _bloc,
-      builder: (context, state) {
-        switch (state) {
-          case OtpVerificationScreenLoading():
-            return const CircularProgressIndicator();
-          case OtpVerificationScreenLoaded():
-            return Scaffold(
-              appBar: AppBar(
-                leading: IconButton.filled(
-                  onPressed: () {
-                    Navigator.of(context).maybePop();
-                  },
-                  icon: Image.asset('assets/icons/arrow_left.png'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: theme.colorScheme.onPrimary,
-                  ),
-                ),
-              ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                child: Center(
-                  child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton.filled(
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+          icon: Image.asset('assets/icons/arrow_left.png'),
+          style: TextButton.styleFrom(
+            backgroundColor: theme.colorScheme.onPrimary,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        child: Center(
+          child: BlocConsumer(
+            bloc: _bloc,
+            listener: (context, state) {
+              switch (state) {
+                case OtpVerificationScreenError():
+                  final snackBar = SnackBar(
+                    content: GestureDetector(
+                      onTap: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                      child: Text(state.e),
+                    ),
+                    behavior: SnackBarBehavior.floating,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  break;
+                case OtpVerificationScreenSuccess():
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
+                  break;
+              }
+            },
+            builder: (context, state) {
+              switch (state) {
+                case OtpVerificationScreenLoading():
+                  return const CircularProgressIndicator();
+                case OtpVerificationScreenLoaded():
+                  return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -147,6 +171,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                         ),
                                       );
                                     },
+                                    
                                     fieldWidth: 46,
                                     fieldHeight: 99,
                                     margin: EdgeInsets.zero,
@@ -177,6 +202,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                       onTap: () {
                                         if (!t.isActive) {
                                           startTimer();
+                                          _bloc.add(OtpVerificationScreenResend(
+                                            email: widget.email,
+                                          ));
                                           setState(() {
                                             timerTick = 1;
                                           });
@@ -205,18 +233,14 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            );
-          case OtpVerificationScreenError():
-            return Text(state.e);
-          case OtpVerificationScreenSuccess():
-            return const Text('push home screen');
-          default:
-            return const CircularProgressIndicator();
-        }
-      },
+                  );
+                default:
+                  return const CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }

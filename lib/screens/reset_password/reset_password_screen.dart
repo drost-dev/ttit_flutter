@@ -36,6 +36,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         context: context,
         barrierDismissible: true,
         builder: (BuildContext context) {
+          // Future.delayed(const Duration(seconds: 3), () {
+          //   if (mounted) {
+          //     Navigator.of(context).pop(true);
+          //   }
+          // });
           return BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
             child: AlertDialog(
@@ -89,31 +94,61 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       );
     }
 
-    return BlocBuilder(
-      bloc: _bloc,
-      builder: (context, state) {
-        switch (state) {
-          case ResetPasswordScreenLoading():
-            return const CircularProgressIndicator();
-          case ResetPasswordScreenLoaded():
-            return Scaffold(
-              appBar: AppBar(
-                leading: IconButton.filled(
-                  onPressed: () {
-                    Navigator.of(context).maybePop();
-                  },
-                  icon: Image.asset('assets/icons/arrow_left.png'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: theme.colorScheme.onPrimary,
-                  ),
-                ),
-              ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                child: Center(
-                  child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton.filled(
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+          icon: Image.asset('assets/icons/arrow_left.png'),
+          style: TextButton.styleFrom(
+            backgroundColor: theme.colorScheme.onPrimary,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        child: Center(
+          child: BlocConsumer(
+            bloc: _bloc,
+            listener: (context, state) {
+              switch (state) {
+                case ResetPasswordScreenError():
+                  
+                  break;
+                default:
+              }
+
+              switch (state) {
+                case ResetPasswordScreenError():
+                  final snackBar = SnackBar(
+                    content: GestureDetector(
+                      onTap: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                      child: Text(state.e),
+                    ),
+                    behavior: SnackBarBehavior.floating,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  break;
+                case ResetPasswordScreenCompleted():
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => OtpVerificationScreen(email: emailValue),
+                    ),
+                  );
+                  break;
+              }
+            },
+            builder: (context, state) {
+              switch (state) {
+                case ResetPasswordScreenLoading():
+                  return const CircularProgressIndicator();
+                case ResetPasswordScreenLoaded():
+                  return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -143,32 +178,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 ],
                               ),
                             ),
-                            // TextFormField(
-                            //   decoration: InputDecoration(
-                            //     hintText: 'xyz@gmail.com',
-                            //     hintStyle: theme.textTheme.bodySmall,
-                            //     border: OutlineInputBorder(
-                            //       borderRadius: BorderRadius.circular(14),
-                            //       borderSide: BorderSide.none,
-                            //     ),
-                            //     filled: true,
-                            //     fillColor: theme.colorScheme.lightGrey,
-                            //     contentPadding: const EdgeInsets.symmetric(
-                            //       vertical: 16,
-                            //       horizontal: 14,
-                            //     ),
-                            //   ),
-                            //   style: theme.textTheme.bodySmall,
-                            // ),
                             InputField(
-                                              fieldKey: _emailKey,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  emailValue = value;
-                                                });
-                                              },
-                                              type: FieldType.email,
-                                            ),
+                              fieldKey: _emailKey,
+                              onChanged: (value) {
+                                setState(() {
+                                  emailValue = value;
+                                });
+                              },
+                              type: FieldType.email,
+                            ),
                             Container(
                               constraints:
                                   const BoxConstraints.expand(height: 50),
@@ -182,7 +200,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     //         const OtpVerificationScreen(),
                                     //   ),
                                     // );
-                                    _bloc.add(ResetPasswordScreenSendCode(email: emailValue));
+                                    _bloc.add(ResetPasswordScreenSendCode(
+                                        email: emailValue));
                                   });
                                 },
                                 style: TextButton.styleFrom(
@@ -201,17 +220,31 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            );
+                  );
+                default:
+                  return CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+
+    return BlocBuilder(
+      bloc: _bloc,
+      builder: (context, state) {
+        switch (state) {
+          case ResetPasswordScreenLoading():
+            return const CircularProgressIndicator();
+          case ResetPasswordScreenLoaded():
           case ResetPasswordScreenError():
             return const Text('error');
           case ResetPasswordScreenCompleted():
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => OtpVerificationScreen(email: state.email),
+                  builder: (context) =>
+                      OtpVerificationScreen(email: state.email),
                 ),
               );
             });
