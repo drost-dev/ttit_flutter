@@ -58,6 +58,4 @@ class SupabaseRepo implements AbstractDatabaseRepo {
     );
     return;
   }
-
-  //void info() {}
 }

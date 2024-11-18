@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home/home_screen.dart';
 import 'package:flutter_application_1/screens/login/bloc/login_screen_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/otp_verification/otp_verification_screen.dart';
 import 'package:flutter_application_1/screens/reset_password/bloc/reset_password_screen_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
 
