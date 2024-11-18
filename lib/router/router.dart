@@ -17,6 +17,16 @@ class $AppRouter extends RootStackRouter {
           page: HomeRoute.page,
           path: '/home',
           initial: true,
+          children: [
+            AutoRoute(
+              page: LoginRoute.page,
+              path: 'login',
+            ),
+            AutoRoute(
+              page: SignUpRoute.page,
+              path: 'signup',
+            ),
+          ],
         ),
         AutoRoute(
           page: LoginRoute.page,

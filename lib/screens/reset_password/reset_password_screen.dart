@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/otp_verification/otp_verification_screen.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/reset_password/bloc/reset_password_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
@@ -40,7 +40,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         builder: (BuildContext context) {
           Future.delayed(const Duration(seconds: 2), () {
             if (context.mounted) {
-              Navigator.of(context).pop(true);
+              AutoRouter.of(context).maybePop(true);
             }
           });
           return BackdropFilter(
@@ -100,7 +100,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       appBar: AppBar(
         leading: IconButton.filled(
           onPressed: () {
-            Navigator.of(context).maybePop();
+            AutoRouter.of(context).maybePop();
           },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
@@ -132,11 +132,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 case ResetPasswordScreenCompleted():
                   showMyDialog().whenComplete(() {
                     if (context.mounted) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              OtpVerificationScreen(email: emailValue),
-                        ),
+                      AutoRouter.of(context).push(
+                        OtpVerificationRoute(email: emailValue),
                       );
                     }
                   });

@@ -1,9 +1,7 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/home/home_screen.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/login/bloc/login_screen_bloc.dart';
-import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
-import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         leading: IconButton.filled(
           onPressed: () {
-            Navigator.of(context).maybePop();
+            AutoRouter.of(context).maybePop();
           },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
@@ -74,11 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   break;
                 case LoginScreenCompleted():
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  AutoRouter.of(context).push(const HomeRoute());
                   break;
               }
             },
@@ -159,12 +153,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           alignment: Alignment.centerRight,
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const ResetPasswordScreen(),
-                                                ),
-                                              );
+                                              AutoRouter.of(context).push(
+                                                  const ResetPasswordRoute());
                                             },
                                             child: Text(
                                               'Восстановить',
@@ -217,11 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpScreen(),
-                            ),
-                          );
+                          AutoRouter.of(context).push(const SignUpRoute());
                         },
                         child: RichText(
                           text: TextSpan(

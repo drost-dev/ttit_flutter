@@ -1,7 +1,6 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/home/home_screen.dart';
-import 'package:flutter_application_1/screens/login/login_screen.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/signup/bloc/sign_up_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
@@ -42,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         leading: IconButton.filled(
           onPressed: () {
-            Navigator.of(context).maybePop();
+            AutoRouter.of(context).maybePop();
           },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
@@ -77,11 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   break;
                 case SignUpScreenCompleted():
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  AutoRouter.of(context).push(const HomeRoute());
                   break;
               }
             },
@@ -262,11 +257,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
+                          AutoRouter.of(context).push(const LoginRoute());
                         },
                         child: RichText(
                           text: TextSpan(

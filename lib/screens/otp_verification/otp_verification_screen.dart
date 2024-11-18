@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/home/home_screen.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/otp_verification/bloc/otp_verification_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +75,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       appBar: AppBar(
         leading: IconButton.filled(
           onPressed: () {
-            Navigator.of(context).maybePop();
+            AutoRouter.of(context).maybePop();
           },
           icon: Image.asset('assets/icons/arrow_left.png'),
           style: TextButton.styleFrom(
@@ -105,11 +105,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   break;
                 case OtpVerificationScreenSuccess():
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  AutoRouter.of(context).push(const HomeRoute());
                   break;
               }
             },
@@ -173,7 +169,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                         ),
                                       );
                                     },
-                                    
                                     fieldWidth: 46,
                                     fieldHeight: 99,
                                     margin: EdgeInsets.zero,
