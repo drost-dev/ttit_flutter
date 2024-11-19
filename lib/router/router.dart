@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/favourite/favourite_screen.dart';
 import 'package:flutter_application_1/screens/home/home_screen.dart';
+import 'package:flutter_application_1/screens/main/main_screen.dart';
 import 'package:flutter_application_1/screens/login/login_screen.dart';
+import 'package:flutter_application_1/screens/notification/notification_screen.dart';
 import 'package:flutter_application_1/screens/otp_verification/otp_verification_screen.dart';
+import 'package:flutter_application_1/screens/profile/profile_screen.dart';
 import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 
@@ -14,17 +18,31 @@ class $AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         /// routes go here
         AutoRoute(
-          page: HomeRoute.page,
-          path: '/home',
+          page: MainRoute.page,
+          path: '/',
           initial: true,
           children: [
             AutoRoute(
-              page: LoginRoute.page,
-              path: 'login',
+              page: HomeRoute.page,
+              path: 'home',
             ),
             AutoRoute(
-              page: SignUpRoute.page,
-              path: 'signup',
+              page: FavouriteRoute.page,
+              path: 'favourite',
+            ),
+            // RedirectRoute(
+            //   path: 'notification',
+            //   redirectTo: '/notification',
+            // ),
+            AutoRoute(
+              page: NotificationRoute.page,
+              path: 'notification',
+              meta: const {'hideNavBar': true},
+            ),
+            AutoRoute(
+              page: ProfileRoute.page,
+              path: 'profile',
+              meta: const {'hideNavBar': true},
             ),
           ],
         ),
