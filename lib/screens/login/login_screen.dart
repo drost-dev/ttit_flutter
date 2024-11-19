@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/login/bloc/login_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
+import 'package:flutter_application_1/widgets/auth_scaffold.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,8 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String passwordValue = '';
   final _passwordKey = GlobalKey<FormFieldState>();
 
-  
-
   @override
   void initState() {
     super.initState();
@@ -33,28 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context).copyWith(
-      colorScheme: defaultTheme.colorScheme.copyWith(
-        surface: defaultTheme.colorScheme.onPrimary,
-        onPrimary: defaultTheme.colorScheme.surface,
-      ),
-    );
+    var theme = Theme.of(context);
 
-    return Theme(
-      data: theme,
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton.filled(
-            onPressed: () {
-              AutoRouter.of(context).maybePop();
-            },
-            icon: Image.asset('assets/icons/arrow_left.png'),
-            style: TextButton.styleFrom(
-              backgroundColor: theme.colorScheme.onPrimary,
-            ),
-          ),
-        ),
-        backgroundColor: theme.colorScheme.surface,
+    return AuthScaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -160,20 +140,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                               ],
                                             ),
                                           ),
-                                          Align(
-                                            alignment: Alignment.centerRight,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                AutoRouter.of(context).push(
-                                                    const ResetPasswordRoute());
-                                              },
+                                          GestureDetector(
+                                            onTap: () {
+                                              AutoRouter.of(context).push(
+                                                  const ResetPasswordRoute());
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
                                               child: Text(
                                                 'Восстановить',
                                                 style:
                                                     theme.textTheme.labelMedium,
                                               ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -245,7 +225,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/reset_password/bloc/reset_password_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
+import 'package:flutter_application_1/widgets/auth_scaffold.dart';
 import 'package:flutter_application_1/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -96,18 +97,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton.filled(
-          onPressed: () {
-            AutoRouter.of(context).maybePop();
-          },
-          icon: Image.asset('assets/icons/arrow_left.png'),
-          style: TextButton.styleFrom(
-            backgroundColor: theme.colorScheme.onPrimary,
-          ),
-        ),
-      ),
+    return AuthScaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
