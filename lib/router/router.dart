@@ -19,8 +19,8 @@ class $AppRouter extends RootStackRouter {
         /// routes go here
         AutoRoute(
           page: MainRoute.page,
-          path: '/',
-          initial: true,
+          //path: '/',
+          //initial: true,
           children: [
             AutoRoute(
               page: HomeRoute.page,
@@ -49,6 +49,7 @@ class $AppRouter extends RootStackRouter {
         AutoRoute(
           page: LoginRoute.page,
           path: '/login',
+          initial: true,
         ),
         AutoRoute(
           page: SignUpRoute.page,

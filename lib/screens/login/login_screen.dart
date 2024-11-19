@@ -23,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String passwordValue = '';
   final _passwordKey = GlobalKey<FormFieldState>();
 
+  
+
   @override
   void initState() {
     super.initState();
@@ -31,204 +33,216 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton.filled(
-          onPressed: () {
-            AutoRouter.of(context).maybePop();
-          },
-          icon: Image.asset('assets/icons/arrow_left.png'),
-          style: TextButton.styleFrom(
-            backgroundColor: theme.colorScheme.onPrimary,
-          ),
-        ),
+    var theme = Theme.of(context).copyWith(
+      colorScheme: defaultTheme.colorScheme.copyWith(
+        surface: defaultTheme.colorScheme.onPrimary,
+        onPrimary: defaultTheme.colorScheme.surface,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ).add(
-          const EdgeInsets.only(
-            top: 11,
-            bottom: 47,
+    );
+
+    return Theme(
+      data: theme,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton.filled(
+            onPressed: () {
+              AutoRouter.of(context).maybePop();
+            },
+            icon: Image.asset('assets/icons/arrow_left.png'),
+            style: TextButton.styleFrom(
+              backgroundColor: theme.colorScheme.onPrimary,
+            ),
           ),
         ),
-        child: Center(
-          child: BlocConsumer(
-            bloc: _bloc,
-            listener: (context, state) {
-              switch (state) {
-                case LoginScreenError():
-                  final snackBar = SnackBar(
-                    content: GestureDetector(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      },
-                      child: Text(state.e),
-                    ),
-                    behavior: SnackBarBehavior.floating,
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  break;
-                case LoginScreenCompleted():
-                  AutoRouter.of(context).push(const HomeRoute());
-                  break;
-              }
-            },
-            builder: (context, state) {
-              switch (state) {
-                case LoginScreenLoading():
-                  return const CircularProgressIndicator();
-                case LoginScreenLoaded():
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        height: 416,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 315,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    'Привет!',
-                                    style: theme.textTheme.displayMedium,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    'Заполните Свои данные или продолжите через социальные медиа',
-                                    style: theme.textTheme.titleLarge,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 292,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    height: 218,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          height: 190,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InputField(
-                                                fieldKey: _emailKey,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    emailValue = value;
-                                                  });
-                                                },
-                                                type: FieldType.email,
-                                              ),
-                                              InputField(
-                                                fieldKey: _passwordKey,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    passwordValue = value;
-                                                  });
-                                                },
-                                                type: FieldType.password,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.centerRight,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              AutoRouter.of(context).push(
-                                                  const ResetPasswordRoute());
-                                            },
-                                            child: Text(
-                                              'Восстановить',
-                                              style:
-                                                  theme.textTheme.labelMedium,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    constraints:
-                                        const BoxConstraints.expand(height: 50),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        bool emailValid =
-                                            _emailKey.currentState!.validate();
-                                        bool passwordValid = _passwordKey
-                                            .currentState!
-                                            .validate();
-
-                                        if (emailValid && passwordValid) {
-                                          _bloc.add(
-                                            LoginScreenLogin(
-                                              email: emailValue,
-                                              password: passwordValue,
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: theme.colorScheme.blue,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(14),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        'Войти',
-                                        style: theme.textTheme.labelLarge,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
+        backgroundColor: theme.colorScheme.surface,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ).add(
+            const EdgeInsets.only(
+              top: 11,
+              bottom: 47,
+            ),
+          ),
+          child: Center(
+            child: BlocConsumer(
+              bloc: _bloc,
+              listener: (context, state) {
+                switch (state) {
+                  case LoginScreenError():
+                    final snackBar = SnackBar(
+                      content: GestureDetector(
                         onTap: () {
-                          AutoRouter.of(context).push(const SignUpRoute());
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         },
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'Вы впервые? ',
-                            style: theme.textTheme.titleMedium!
-                                .apply(color: theme.colorScheme.darkGrey),
+                        child: Text(state.e),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    break;
+                  case LoginScreenCompleted():
+                    AutoRouter.of(context).push(const HomeRoute());
+                    break;
+                }
+              },
+              builder: (context, state) {
+                switch (state) {
+                  case LoginScreenLoading():
+                    return const CircularProgressIndicator();
+                  case LoginScreenLoaded():
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          height: 416,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextSpan(
-                                text: 'Создать пользователя',
-                                style: theme.textTheme.titleMedium,
+                              SizedBox(
+                                width: 315,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Привет!',
+                                      style: theme.textTheme.displayMedium,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      'Заполните Свои данные или продолжите через социальные медиа',
+                                      style: theme.textTheme.titleLarge,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 292,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      height: 218,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            height: 190,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                InputField(
+                                                  fieldKey: _emailKey,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      emailValue = value;
+                                                    });
+                                                  },
+                                                  type: FieldType.email,
+                                                ),
+                                                InputField(
+                                                  fieldKey: _passwordKey,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      passwordValue = value;
+                                                    });
+                                                  },
+                                                  type: FieldType.password,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.centerRight,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                AutoRouter.of(context).push(
+                                                    const ResetPasswordRoute());
+                                              },
+                                              child: Text(
+                                                'Восстановить',
+                                                style:
+                                                    theme.textTheme.labelMedium,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      constraints: const BoxConstraints.expand(
+                                          height: 50),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          bool emailValid = _emailKey
+                                              .currentState!
+                                              .validate();
+                                          bool passwordValid = _passwordKey
+                                              .currentState!
+                                              .validate();
+
+                                          if (emailValid && passwordValid) {
+                                            _bloc.add(
+                                              LoginScreenLogin(
+                                                email: emailValue,
+                                                password: passwordValue,
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        style: TextButton.styleFrom(
+                                          backgroundColor:
+                                              theme.colorScheme.blue,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'Войти',
+                                          style: theme.textTheme.labelLarge,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                default:
-                  return const CircularProgressIndicator();
-              }
-            },
+                        GestureDetector(
+                          onTap: () {
+                            AutoRouter.of(context).push(const SignUpRoute());
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Вы впервые? ',
+                              style: theme.textTheme.titleMedium!
+                                  .apply(color: theme.colorScheme.darkGrey),
+                              children: [
+                                TextSpan(
+                                  text: 'Создать пользователя',
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  default:
+                    return const CircularProgressIndicator();
+                }
+              },
+            ),
           ),
         ),
       ),

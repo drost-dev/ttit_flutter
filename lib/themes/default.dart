@@ -79,7 +79,7 @@ var defaultTheme = ThemeData(
       height: 16/12,
       color: darkGrey,
     ),
-    labelSmall: TextStyle(
+    labelSmall: const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.normal,
       color: Color.fromRGBO(125, 132, 141, 1),
@@ -88,8 +88,9 @@ var defaultTheme = ThemeData(
   fontFamily: GoogleFonts.raleway().fontFamily,
   colorScheme: ColorScheme.fromSeed(
     seedColor: blue,
-    onPrimary: lightGrey,
-    surface: Colors.white,
+    onPrimary: Colors.white,
+    //surface: Colors.white,
+    surface: lightGrey
   ),
   iconButtonTheme: IconButtonThemeData(
     style: TextButton.styleFrom(
