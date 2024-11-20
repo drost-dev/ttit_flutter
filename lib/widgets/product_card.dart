@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   const ProductCard({super.key});
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  bool _isAdded = false;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -95,27 +101,42 @@ class ProductCard extends StatelessWidget {
           ),
 
           //add button
-          Align(
-            alignment: Alignment.bottomRight.add(
-              const Alignment(0.84, 0.7),
-            ),
-            child: Container(
-              width: 34 * 2,
-              height: 35.5 * 2,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.blue,
-                borderRadius: BorderRadius.circular(16),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _isAdded = !_isAdded;
+              });
+            },
+            child: Align(
+              alignment: Alignment.bottomRight.add(
+                const Alignment(0.84, 0.7),
               ),
-              alignment: Alignment.topLeft,
-              padding: const EdgeInsets.only(top: 9.25, left: 7),
-              child: Text('+',
-                  style: TextStyle(
-                    fontFamily: GoogleFonts.poppins().fontFamily,
-                    fontSize: 32,
-                    height: 16 / 32,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300,
-                  )),
+              child: Container(
+                width: 34 * 2,
+                height: 35.5 * 2,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.blue,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                alignment: Alignment.topLeft,
+                padding: !_isAdded
+                    ? const EdgeInsets.only(top: 9.25, left: 7)
+                    : const EdgeInsets.only(top: 7.5, left: 7),
+                child: !_isAdded
+                    ? Text('+',
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontSize: 32,
+                          height: 16 / 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                        ))
+                    : SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: Image.asset('icons/cart.png'),
+                      ),
+              ),
             ),
           )
         ],
