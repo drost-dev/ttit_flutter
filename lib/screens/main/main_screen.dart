@@ -16,6 +16,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AutoTabsRouter(
       routes: const [
         HomeRoute(),
@@ -63,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                               icon: Image.asset(
                                 'icons/home.png',
                                 scale: 4,
-                                color: selectedIndex == 0 ? blue : grey,
+                                color: selectedIndex == 0 ? theme.colorScheme.blue : theme.colorScheme.grey,
                               ),
                               style: IconButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -86,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
                               icon: Image.asset(
                                 'icons/heart.png',
                                 scale: 4,
-                                color: selectedIndex == 1 ? blue : grey,
+                                color: selectedIndex == 1 ? theme.colorScheme.blue : theme.colorScheme.grey,
                               ),
                               style: IconButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -115,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                               icon: Image.asset(
                                 'icons/bell.png',
                                 scale: 4,
-                                color: selectedIndex == 2 ? blue : grey,
+                                color: selectedIndex == 2 ? theme.colorScheme.blue : theme.colorScheme.grey,
                               ),
                               style: IconButton.styleFrom(
                                 backgroundColor: Colors.transparent,
@@ -135,7 +136,7 @@ class _MainScreenState extends State<MainScreen> {
                               icon: Image.asset(
                                 'icons/person.png',
                                 scale: 4,
-                                color: selectedIndex == 3 ? blue : grey,
+                                color: selectedIndex == 3 ? theme.colorScheme.blue : theme.colorScheme.grey,
                               ),
                               style: IconButton.styleFrom(
                                 backgroundColor: Colors.transparent,

@@ -16,15 +16,31 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton.filled(
-          onPressed: () {
-            AutoRouter.of(context).maybePop();
-          },
-          icon: Image.asset('assets/icons/arrow_left.png'),
-          style: TextButton.styleFrom(
-            backgroundColor: theme.colorScheme.onPrimary,
+        // actions: [
+        //   IconButton.filled(
+        //     onPressed: () {
+        //       AutoRouter.of(context).maybePop();
+        //     },
+        //     icon: Image.asset('assets/icons/arrow_left.png'),
+        //     style: TextButton.styleFrom(
+        //       backgroundColor: theme.colorScheme.onPrimary,
+        //     ),
+        //   ),
+        // ],
+        title: SizedBox(
+          width: 335,
+          height: 44,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Главная',
+                style: theme.textTheme.displayMedium,
+              )
+            ],
           ),
         ),
+        centerTitle: true,
       ),
       body: const Center(
         child: ProductCard(),
