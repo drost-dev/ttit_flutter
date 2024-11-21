@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/themes/default.dart';
 
 class AuthScaffold extends StatefulWidget {
   const AuthScaffold({super.key, required this.body,});
@@ -29,7 +30,7 @@ class _AuthScaffoldState extends State<AuthScaffold> {
             onPressed: () {
               AutoRouter.of(context).maybePop();
             },
-            icon: Image.asset('assets/icons/arrow_left.png'),
+            icon: Image.asset('assets/icons/arrow_left.png', color: theme.colorScheme.black),
             style: TextButton.styleFrom(
               backgroundColor: theme.colorScheme.onPrimary,
             ),

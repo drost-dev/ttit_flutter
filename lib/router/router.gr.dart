@@ -48,6 +48,53 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ListingScreen]
+class ListingRoute extends PageRouteInfo<ListingRouteArgs> {
+  ListingRoute({
+    Key? key,
+    int index = 0,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ListingRoute.name,
+          args: ListingRouteArgs(
+            key: key,
+            index: index,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ListingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<ListingRouteArgs>(orElse: () => const ListingRouteArgs());
+      return ListingScreen(
+        key: args.key,
+        index: args.index,
+      );
+    },
+  );
+}
+
+class ListingRouteArgs {
+  const ListingRouteArgs({
+    this.key,
+    this.index = 0,
+  });
+
+  final Key? key;
+
+  final int index;
+
+  @override
+  String toString() {
+    return 'ListingRouteArgs{key: $key, index: $index}';
+  }
+}
+
+/// generated route for
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
@@ -148,6 +195,25 @@ class OtpVerificationRouteArgs {
   String toString() {
     return 'OtpVerificationRouteArgs{key: $key, email: $email}';
   }
+}
+
+/// generated route for
+/// [PopularScreen]
+class PopularRoute extends PageRouteInfo<void> {
+  const PopularRoute({List<PageRouteInfo>? children})
+      : super(
+          PopularRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PopularRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PopularScreen();
+    },
+  );
 }
 
 /// generated route for

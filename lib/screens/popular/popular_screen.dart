@@ -4,14 +4,14 @@ import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/product_card.dart';
 
 @RoutePage()
-class FavouriteScreen extends StatefulWidget {
-  const FavouriteScreen({super.key});
+class PopularScreen extends StatefulWidget {
+  const PopularScreen({super.key});
 
   @override
-  State<FavouriteScreen> createState() => _FavouriteScreenState();
+  State<PopularScreen> createState() => _PopularScreenState();
 }
 
-class _FavouriteScreenState extends State<FavouriteScreen> {
+class _PopularScreenState extends State<PopularScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -28,7 +28,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           ),
         ),
         title: Text(
-          'Избранное',
+          'Популярное',
           style:
               theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
         ),
@@ -51,22 +51,20 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 24.75),
-        child: Center(
-          child: SizedBox(
-            width: 333,
-            height: 629,
-            child: GridView.builder(
-              itemCount: 6,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 160 / 184.5,
-                mainAxisSpacing: 13,
-                crossAxisSpacing: 13,
-              ),
-              itemBuilder: (context, index) {
-                return const ProductCard();
-              },
+        child: SizedBox(
+          width: 333,
+          height: 629,
+          child: GridView.builder(
+            itemCount: 6,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 160 / 184.5,
+              mainAxisSpacing: 13,
+              crossAxisSpacing: 13,
             ),
+            itemBuilder: (context, index) {
+              return const ProductCard();
+            },
           ),
         ),
       ),

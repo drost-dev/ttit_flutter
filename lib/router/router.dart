@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/favourite/favourite_screen.dart';
 import 'package:flutter_application_1/screens/home/home_screen.dart';
+import 'package:flutter_application_1/screens/listing/listing_screen.dart';
 import 'package:flutter_application_1/screens/main/main_screen.dart';
 import 'package:flutter_application_1/screens/login/login_screen.dart';
 import 'package:flutter_application_1/screens/notification/notification_screen.dart';
 import 'package:flutter_application_1/screens/otp_verification/otp_verification_screen.dart';
+import 'package:flutter_application_1/screens/popular/popular_screen.dart';
 import 'package:flutter_application_1/screens/profile/profile_screen.dart';
 import 'package:flutter_application_1/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
@@ -31,10 +33,6 @@ class $AppRouter extends RootStackRouter {
               page: FavouriteRoute.page,
               path: 'favourite',
             ),
-            // RedirectRoute(
-            //   path: 'notification',
-            //   redirectTo: '/notification',
-            // ),
             AutoRoute(
               page: NotificationRoute.page,
               path: 'notification',
@@ -48,10 +46,17 @@ class $AppRouter extends RootStackRouter {
           ],
         ),
         AutoRoute(
+          page: PopularRoute.page,
+          path: '/popular',
+        ),
+        AutoRoute(
+          page: ListingRoute.page,
+          path: '/listing',
+        ),
+        AutoRoute(
           page: LoginRoute.page,
           path: '/login',
           initial: true,
-          children: []
         ),
         AutoRoute(
           page: SignUpRoute.page,

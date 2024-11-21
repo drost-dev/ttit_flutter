@@ -101,41 +101,43 @@ class _ProductCardState extends State<ProductCard> {
           ),
 
           //add button
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _isAdded = !_isAdded;
-              });
-            },
+          Positioned.fill(
+            right: -34,
+            bottom: -35.5,
             child: Align(
-              alignment: Alignment.bottomRight.add(
-                const Alignment(0.84, 0.7),
-              ),
-              child: Container(
-                width: 34 * 2,
-                height: 35.5 * 2,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.blue,
-                  borderRadius: BorderRadius.circular(16),
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isAdded = !_isAdded;
+                  });
+                },
+                child: Container(
+                  width: 34 * 2,
+                  height: 35.5 * 2,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.blue,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  alignment: Alignment.topLeft,
+                  padding: !_isAdded
+                      ? const EdgeInsets.only(top: 9.25, left: 7)
+                      : const EdgeInsets.only(top: 7.5, left: 7),
+                  child: !_isAdded
+                      ? Text('+',
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                            fontSize: 32,
+                            height: 16 / 32,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                          ))
+                      : SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: Image.asset('icons/cart.png'),
+                        ),
                 ),
-                alignment: Alignment.topLeft,
-                padding: !_isAdded
-                    ? const EdgeInsets.only(top: 9.25, left: 7)
-                    : const EdgeInsets.only(top: 7.5, left: 7),
-                child: !_isAdded
-                    ? Text('+',
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontSize: 32,
-                          height: 16 / 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                        ))
-                    : SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Image.asset('icons/cart.png'),
-                      ),
               ),
             ),
           )
