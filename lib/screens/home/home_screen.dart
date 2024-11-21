@@ -55,16 +55,32 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                Container(
                   width: 269,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: 4,
+                        color: Color.fromRGBO(0, 0, 0, 0.04),
+                      ),
+                    ],
+                  ),
                   child: TextField(
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      height: 20 / 12,
+                      fontWeight: FontWeight.w500,
+                      color: theme.colorScheme.darkGrey,
+                    ),
                     decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
                       hintText: 'Поиск',
                       isDense: true, //нужно, чтобы работал contentPadding
-                      contentPadding:
-                          const EdgeInsets.only(top: 14, bottom: 14, right: 57),
+                      contentPadding: const EdgeInsets.only(right: 57),
                       prefixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 12, left: 26),
+                        padding: const EdgeInsets.only(
+                            right: 12, left: 26, top: 14, bottom: 14),
                         child: SizedBox(
                           width: 24,
                           height: 24,
@@ -77,7 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       border: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1),
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(14),
+                        ),
                       ),
                     ),
                   ),

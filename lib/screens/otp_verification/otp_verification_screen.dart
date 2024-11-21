@@ -95,7 +95,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   break;
                 case OtpVerificationScreenSuccess():
-                  AutoRouter.of(context).push(const MainRoute());
+                  AutoRouter.of(context).replace(const MainRoute());
                   break;
               }
             },

@@ -66,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   break;
                 case SignUpScreenCompleted():
-                  AutoRouter.of(context).push(const HomeRoute());
+                  AutoRouter.of(context).replace(const MainRoute());
                   break;
               }
             },

@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     break;
                   case LoginScreenCompleted():
-                    AutoRouter.of(context).push(const HomeRoute());
+                    AutoRouter.of(context).replace(const MainRoute());
                     break;
                 }
               },
