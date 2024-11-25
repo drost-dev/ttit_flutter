@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProductCard extends StatefulWidget {
-  const ProductCard({super.key});
+class ProductCardSmall extends StatefulWidget {
+  const ProductCardSmall({super.key});
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<ProductCardSmall> createState() => _ProductCardSmallState();
 }
 
-class _ProductCardState extends State<ProductCard> {
+class _ProductCardSmallState extends State<ProductCardSmall> {
   bool _isAdded = false;
   @override
   Widget build(BuildContext context) {

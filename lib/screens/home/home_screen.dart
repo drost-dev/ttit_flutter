@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/cart_button.dart';
-import 'package:flutter_application_1/widgets/product_card.dart';
+import 'package:flutter_application_1/widgets/product_card_small.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(left: 16, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.filled(2, const ProductCard()),
+                children: List.filled(2, const ProductCardSmall()),
               ),
             ),
             const SizedBox(height: 40.5),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/cart/cart_screen.dart';
 import 'package:flutter_application_1/screens/favourite/favourite_screen.dart';
 import 'package:flutter_application_1/screens/home/home_screen.dart';
 import 'package:flutter_application_1/screens/listing/listing_screen.dart';
@@ -23,7 +24,7 @@ class $AppRouter extends RootStackRouter {
           page: MainRoute.page,
           path: '/main',
           //path: '/',
-          //initial: true,
+          initial: true,
           children: [
             AutoRoute(
               page: HomeRoute.page,
@@ -54,14 +55,18 @@ class $AppRouter extends RootStackRouter {
           path: '/listing',
         ),
         AutoRoute(
+          page: CartRoute.page,
+          path: '/cart',
+        ),
+
+        AutoRoute(
           page: LoginRoute.page,
           path: '/login',
-          initial: true,
+          //initial: true,
         ),
         AutoRoute(
           page: SignUpRoute.page,
           path: '/signup',
-          //initial: true,
         ),
         AutoRoute(
           page: ResetPasswordRoute.page,

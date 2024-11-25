@@ -26,6 +26,7 @@ class _AuthScaffoldState extends State<AuthScaffold> {
       data: theme,
       child: Scaffold(
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           leading: IconButton.filled(
             onPressed: () {
               AutoRouter.of(context).maybePop();

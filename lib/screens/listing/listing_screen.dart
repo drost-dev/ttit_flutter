@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
-import 'package:flutter_application_1/widgets/product_card.dart';
+import 'package:flutter_application_1/widgets/product_card_small.dart';
 
 @RoutePage()
 class ListingScreen extends StatefulWidget {
@@ -111,7 +111,7 @@ class _ListingScreenState extends State<ListingScreen> {
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 21),
                 itemBuilder: (context, index) {
-                  return const ProductCard();
+                  return const ProductCardSmall();
                 },
               ),
             ),

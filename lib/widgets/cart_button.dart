@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 class CartButton extends StatefulWidget {
@@ -21,7 +22,7 @@ class _CartButtonState extends State<CartButton> {
       children: [
         IconButton.filled(
           onPressed: () {
-            context.router.maybePop();
+            context.router.push(const CartRoute());
           },
           icon: Image.asset('icons/bag.png'),
           style: TextButton.styleFrom(

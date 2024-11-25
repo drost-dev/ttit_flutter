@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
-import 'package:flutter_application_1/widgets/product_card.dart';
+import 'package:flutter_application_1/widgets/product_card_small.dart';
 
 @RoutePage()
 class FavouriteScreen extends StatefulWidget {
@@ -64,7 +64,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                 crossAxisSpacing: 13,
               ),
               itemBuilder: (context, index) {
-                return const ProductCard();
+                return const ProductCardSmall();
               },
             ),
           ),
