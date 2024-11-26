@@ -29,6 +29,25 @@ class CartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CheckoutScreen]
+class CheckoutRoute extends PageRouteInfo<void> {
+  const CheckoutRoute({List<PageRouteInfo>? children})
+      : super(
+          CheckoutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CheckoutRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CheckoutScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [FavouriteScreen]
 class FavouriteRoute extends PageRouteInfo<void> {
   const FavouriteRoute({List<PageRouteInfo>? children})

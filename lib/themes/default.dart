@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+Color _lightBlue = const Color.fromRGBO(223, 239, 255, 1);
 Color _blue = const Color.fromRGBO(72, 178, 231, 1);
+Color _darkBlue = const Color.fromRGBO(13, 110, 253, 1);
 Color _lightGrey = const Color.fromRGBO(247, 247, 249, 1);
 Color _grey = const Color.fromRGBO(112, 123, 129, 1);
 Color _darkGrey = const Color.fromRGBO(106, 106, 106, 1);
@@ -9,7 +11,9 @@ Color _black = const Color.fromRGBO(43, 43, 43, 1);
 Color _red = const Color.fromRGBO(248, 114, 101, 1);
 
 extension MyColorScheme on ColorScheme {
+  Color get lightBlue => _lightBlue;
   Color get blue => _blue;
+  Color get darkBlue => _darkBlue;
   Color get lightGrey => _lightGrey;
   Color get grey => _grey;
   Color get darkGrey => _darkGrey;
@@ -28,6 +32,11 @@ var defaultTheme = ThemeData(
         fontSize: 21,
         fontWeight: FontWeight.w600,
         color: _black,
+      ),
+      headlineSmall: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
       ),
       titleLarge: TextStyle(
           fontSize: 16,

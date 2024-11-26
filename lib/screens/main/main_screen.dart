@@ -67,7 +67,9 @@ class _MainScreenState extends State<MainScreen> {
                               ],
                             ),
                             child: IconButton.filled(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.router.push(const CartRoute());
+                              },
                               icon: Image.asset(
                                 'icons/bag.png',
                                 height: 24,

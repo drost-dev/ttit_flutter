@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/product_card.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/product_card_full.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,7 +79,11 @@ class _CartScreenState extends State<CartScreen> {
               itemBuilder: (context, index) {
                 return ProductCardFull(
                   productCard: products[index],
-                  onDelete: () => products.removeAt(index),
+                  onDelete: () {
+                    setState(() {
+                      products.remove(products[index]);
+                    });
+                  },
                 );
               },
               separatorBuilder: (context, index) {
@@ -175,7 +180,9 @@ class _CartScreenState extends State<CartScreen> {
             Container(
               constraints: const BoxConstraints.expand(height: 50),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.push(const CheckoutRoute());
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: theme.colorScheme.blue,
                   shape: RoundedRectangleBorder(
