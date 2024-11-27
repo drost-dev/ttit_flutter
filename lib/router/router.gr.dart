@@ -48,6 +48,53 @@ class CheckoutRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DetailsScreen]
+class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
+  DetailsRoute({
+    Key? key,
+    int id = -1,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailsRoute.name,
+          args: DetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<DetailsRouteArgs>(orElse: () => const DetailsRouteArgs());
+      return DetailsScreen(
+        key: args.key,
+        id: args.id,
+      );
+    },
+  );
+}
+
+class DetailsRouteArgs {
+  const DetailsRouteArgs({
+    this.key,
+    this.id = -1,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'DetailsRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
 /// [FavouriteScreen]
 class FavouriteRoute extends PageRouteInfo<void> {
   const FavouriteRoute({List<PageRouteInfo>? children})

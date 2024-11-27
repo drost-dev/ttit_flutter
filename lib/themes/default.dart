@@ -28,6 +28,11 @@ var defaultTheme = ThemeData(
         fontWeight: FontWeight.bold,
         color: _black,
       ),
+      headlineLarge: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+        color: _black,
+      ),
       headlineMedium: TextStyle(
         fontSize: 21,
         fontWeight: FontWeight.w600,

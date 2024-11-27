@@ -7,13 +7,14 @@ enum Features {
 
 class ProductCard extends Equatable {
   const ProductCard({
+    required this.id,
     required this.name,
     required this.price,
     this.feature,
     required this.image,
   });
 
-  //final int id;
+  final int id;
   final String name;
   final double price;
   final Features? feature;

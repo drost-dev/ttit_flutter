@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        //scrolledUnderElevation: 0, //свойство запрещает появление тени при прокрутке (не ворк)
         //surfaceTintColor: Colors.transparent,
         title: SizedBox(
           width: 335,
@@ -32,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Главная',
                 style: theme.textTheme.displayMedium,
               ),
-              const CartButton(isEmpty: true),
+              const CartButton(isEmpty: false),
             ],
           ),
         ),

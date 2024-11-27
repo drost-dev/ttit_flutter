@@ -1,132 +1,40 @@
 import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/edit_info_field.dart';
 
 @RoutePage()
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
+
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  String? email = 'emmanueloyiboke@gmail.com';
+  String? phone = '+234-811-732-5298';
+  String? cardNumber = '0696 4629';
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    // Future<void> showMyDialog() async {
-    //   return showDialog<void>(
-    //     context: context,
-    //     barrierDismissible: false,
-    //     builder: (BuildContext context) {
-    //       Future.delayed(const Duration(seconds: 7), () {
-    //         if (context.mounted) {
-    //           AutoRouter.of(context).maybePop(true);
-    //         }
-    //       });
-    //       return BackdropFilter(
-    //         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-    //         child: Container(
-    //           margin: const EdgeInsets.only(
-    //                 left: 20, right: 20, top: 264, bottom: 173),
-    //           width: MediaQuery.of(context).size.width,
-    //           child: AlertDialog(
-    //             shape: RoundedRectangleBorder(
-    //               borderRadius: BorderRadius.circular(20),
-    //             ),
-    //             content: Stack(
-    //               children: [
-    //                 Positioned.fill(
-    //                   child: Container(
-    //                     constraints: const BoxConstraints(minHeight: 214),
-    //                     padding: const EdgeInsets.only(
-    //                         left: 88, right: 88, top: 40, bottom: 121),
-    //                     child: Column(
-    //                       mainAxisSize: MainAxisSize.min,
-    //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                       children: [
-    //                         Container(
-    //                           width: 134,
-    //                           height: 134,
-    //                           padding: const EdgeInsets.all(24),
-    //                           decoration: BoxDecoration(
-    //                             shape: BoxShape.circle,
-    //                             color: theme.colorScheme.lightBlue,
-    //                           ),
-    //                           child: Image.asset(
-    //                             'images/confetti.png',
-    //                             width: 86,
-    //                             height: 86,
-    //                           ),
-    //                         ),
-    //                       ],
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //             // insetPadding: const EdgeInsets.only(
-    //             //     left: 20, right: 20, top: 264, bottom: 173),
-    //             insetPadding: EdgeInsets.zero,
-    //             contentPadding: EdgeInsets.zero,
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // }
-
-    // Future<void> showMyDialog() async {
-    //   return showDialog<void>(
-    //     context: context,
-    //     barrierDismissible: false,
-    //     builder: (BuildContext context) {
-    //       Future.delayed(const Duration(seconds: 7), () {
-    //         if (context.mounted) {
-    //           AutoRouter.of(context).maybePop(true);
-    //         }
-    //       });
-    //       return BackdropFilter(
-    //         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-    //         child: SizedBox(
-    //           width: MediaQuery.of(context).size.width,
-    //           // margin: const EdgeInsets.only(
-    //           //   left: 0,
-    //           //   right: 0,
-    //           //   top: 264,
-    //           //   bottom: 173,
-    //           // ),
-    //           child: AlertDialog(
-    //             insetPadding: EdgeInsets.zero,
-    //             contentPadding: EdgeInsets.zero,
-    //             content: Container(
-    //               color: Colors.black,
-    //               constraints: const BoxConstraints(minHeight: 375),
-    //             ),
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // }
 
     Future<void> showMyDialog() async {
       return showDialog<void>(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          Future.delayed(const Duration(seconds: 7), () {
-            if (context.mounted) {
-              AutoRouter.of(context).maybePop(true);
-            }
-          });
           return BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
             child: AlertDialog(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              content: Container(
+              content: SizedBox(
                 height: 375,
                 width: 335,
                 child: Stack(
@@ -163,20 +71,6 @@ class CheckoutScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Positioned.fill(
-                    //   child: Padding(
-                    //     padding: EdgeInsets.only(
-                    //       left: 50,
-                    //       right: 50,
-                    //       bottom: 40,
-                    //     ),
-                    //     child: Container(
-                    //       width: 70,
-                    //       height: 51,
-                    //       color: theme.colorScheme.blue,
-                    //     ),
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 50,
@@ -190,9 +84,10 @@ class CheckoutScreen extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               if (context.mounted) {
-                                // AutoRouter.of(context).push(
-                                //   OtpVerificationRoute(email: emailValue),
-                                // );
+                                context.router.popUntil((route) =>
+                                    route.settings.name == CartRoute.page.name);
+                                context.router.maybePop();
+                                
                               }
                             },
                             style: TextButton.styleFrom(
@@ -273,11 +168,17 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     Container(
                       constraints: const BoxConstraints(minHeight: 96),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          EditInfoField(type: EditInfoFieldType.email),
-                          EditInfoField(type: EditInfoFieldType.phone),
+                          EditInfoField(
+                            type: EditInfoFieldType.email,
+                            value: email,
+                          ),
+                          EditInfoField(
+                            type: EditInfoFieldType.phone,
+                            value: phone,
+                          ),
                         ],
                       ),
                     ),
@@ -465,7 +366,7 @@ class CheckoutScreen extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Text(
-                                                    '**** **** 0696 4629',
+                                                    '**** **** ${cardNumber ?? ''}',
                                                     style: theme
                                                         .textTheme.labelMedium
                                                         ?.copyWith(
@@ -590,13 +491,7 @@ class CheckoutScreen extends StatelessWidget {
               constraints: const BoxConstraints.expand(height: 50),
               child: ElevatedButton(
                 onPressed: () {
-                  showMyDialog().whenComplete(() {
-                    if (context.mounted) {
-                      // AutoRouter.of(context).push(
-                      //   OtpVerificationRoute(email: emailValue),
-                      // );
-                    }
-                  });
+                  showMyDialog();
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: theme.colorScheme.blue,

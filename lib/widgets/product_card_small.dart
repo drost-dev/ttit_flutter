@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/product_card.dart';
+import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductCardSmall extends StatefulWidget {
-  const ProductCardSmall({super.key});
+  const ProductCardSmall({super.key, this.productCard});
+  final ProductCard? productCard;
 
   @override
   State<ProductCardSmall> createState() => _ProductCardSmallState();
@@ -28,76 +32,82 @@ class _ProductCardSmallState extends State<ProductCardSmall> {
       ),
       child: Stack(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //fav button
-              SizedBox(
-                width: 28,
-                height: 28,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: ImageIcon(
-                      const AssetImage(
-                        'icons/heart2.png',
+          GestureDetector(
+            onTap: () {
+              context.router
+                  .push(DetailsRoute(id: widget.productCard?.id ?? -1));
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //fav button
+                SizedBox(
+                  width: 28,
+                  height: 28,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
+                      icon: ImageIcon(
+                        const AssetImage(
+                          'icons/heart2.png',
+                        ),
+                        color: theme.colorScheme.red,
+                        size: 16,
                       ),
-                      color: theme.colorScheme.red,
-                      size: 16,
                     ),
                   ),
                 ),
-              ),
-              //gap
-              const SizedBox(height: 3),
-              //img
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: SizedBox(
-                  width: 115,
-                  height: 53.85,
-                  child: Image.asset(
-                    'images/nike_pro.png',
-                    fit: BoxFit.cover,
+                //gap
+                const SizedBox(height: 3),
+                //img
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: SizedBox(
+                    width: 115,
+                    height: 53.85,
+                    child: Image.asset(
+                      'images/nike_pro.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              //gap
-              const SizedBox(height: 12.6),
-              SizedBox(
-                height: 83,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'BEST SELLER',
-                      style: theme.textTheme.labelMedium?.apply(
-                        fontWeightDelta: 1,
-                        color: theme.colorScheme.blue,
+                //gap
+                const SizedBox(height: 12.6),
+                SizedBox(
+                  height: 83,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'BEST SELLER',
+                        style: theme.textTheme.labelMedium?.apply(
+                          fontWeightDelta: 1,
+                          color: theme.colorScheme.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Nike Air Max',
-                      style: theme.textTheme.titleSmall?.apply(
-                        fontWeightDelta: -1,
-                        color: theme.colorScheme.darkGrey,
+                      const SizedBox(height: 8),
+                      Text(
+                        'Nike Air Max',
+                        style: theme.textTheme.titleSmall?.apply(
+                          fontWeightDelta: -1,
+                          color: theme.colorScheme.darkGrey,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      '₽752.00',
-                      style: theme.textTheme.bodySmall?.apply(
-                        color: theme.colorScheme.black,
+                      const SizedBox(height: 15),
+                      Text(
+                        '₽752.00',
+                        style: theme.textTheme.bodySmall?.apply(
+                          color: theme.colorScheme.black,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
 
           //add button

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/cart/cart_screen.dart';
 import 'package:flutter_application_1/screens/checkout/checkout_screen.dart';
+import 'package:flutter_application_1/screens/details/details_screen.dart';
 import 'package:flutter_application_1/screens/favourite/favourite_screen.dart';
 import 'package:flutter_application_1/screens/home/home_screen.dart';
 import 'package:flutter_application_1/screens/listing/listing_screen.dart';
@@ -62,6 +63,10 @@ class $AppRouter extends RootStackRouter {
         AutoRoute(
           page: CheckoutRoute.page,
           path: '/checkout',
+        ),
+        AutoRoute(
+          page: DetailsRoute.page,
+          path: '/details',
         ),
 
         AutoRoute(

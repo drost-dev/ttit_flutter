@@ -18,16 +18,19 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List<ProductCard> products = [
     ProductCard(
+      id: 1,
       name: 'Nike Club Max',
       price: 584.95,
       image: Image.asset('images/nike1.png'),
     ),
     ProductCard(
+      id: 2,
       name: 'Nike Air Max 200',
       price: 94.05,
       image: Image.asset('images/nike2.png'),
     ),
     ProductCard(
+      id: 3,
       name: 'Nike Air Max 270 Essential',
       price: 74.95,
       image: Image.asset('images/nike3.png'),
@@ -145,7 +148,7 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 40,
               child: Column(
                 mainAxisSize: MainAxisSize.min,

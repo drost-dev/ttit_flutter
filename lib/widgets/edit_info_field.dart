@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 enum EditInfoFieldType {
-  email('emmanueloyiboke@gmail.com', 'Email', 'icons/mail.png'),
-  phone('+234-811-732-5298', 'Телефон', 'icons/phone.png');
+  email('*****************@*******.***', 'Email', 'icons/mail.png'),
+  phone('+***-***-***-****', 'Телефон', 'icons/phone.png');
 
   final String value;
   final String text;
@@ -16,7 +16,10 @@ class EditInfoField extends StatelessWidget {
   const EditInfoField({
     super.key,
     required this.type,
+    this.value,
   });
+
+  final String? value;
 
   final EditInfoFieldType type;
 
@@ -54,7 +57,7 @@ class EditInfoField extends StatelessWidget {
                             MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            type.value,
+                            value ?? type.value,
                             style: theme.textTheme.bodySmall
                                 ?.copyWith(
                               height: 20 / 14,

@@ -80,7 +80,7 @@ class _ListingScreenState extends State<ListingScreen> {
                             child: Text(
                               items[index],
                               style: theme.textTheme.labelMedium
-                                  ?.apply(color: theme.colorScheme.black),
+                                  ?.apply(color: selectedIndex == index ? Colors.white : theme.colorScheme.black),
                             ),
                           ),
                         );
@@ -118,28 +118,6 @@ class _ListingScreenState extends State<ListingScreen> {
           ),
         ],
       ),
-
-      /* GridView
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 24.75),
-        child: SizedBox(
-          width: 333,
-          height: 629,
-          child: GridView.builder(
-            itemCount: 6,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 160 / 184.5,
-              mainAxisSpacing: 13,
-              crossAxisSpacing: 13,
-            ),
-            itemBuilder: (context, index) {
-              return const ProductCard();
-            },
-          ),
-        ),
-      ),
-      */
     );
   }
 }
