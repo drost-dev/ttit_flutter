@@ -52,7 +52,7 @@ class _ProductCardSmallState extends State<ProductCardSmall> {
                       onPressed: () {},
                       icon: ImageIcon(
                         const AssetImage(
-                          'icons/heart2.png',
+                          'icons/heart_filled.png',
                         ),
                         color: theme.colorScheme.red,
                         size: 16,
