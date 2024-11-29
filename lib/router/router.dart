@@ -9,6 +9,7 @@ import 'package:flutter_application_1/screens/listing/listing_screen.dart';
 import 'package:flutter_application_1/screens/main/main_screen.dart';
 import 'package:flutter_application_1/screens/login/login_screen.dart';
 import 'package:flutter_application_1/screens/notification/notification_screen.dart';
+import 'package:flutter_application_1/screens/orders/orders_screen.dart';
 import 'package:flutter_application_1/screens/otp_verification/otp_verification_screen.dart';
 import 'package:flutter_application_1/screens/popular/popular_screen.dart';
 import 'package:flutter_application_1/screens/profile/profile_screen.dart';
@@ -37,8 +38,8 @@ class $AppRouter extends RootStackRouter {
               path: 'favourite',
             ),
             AutoRoute(
-              page: NotificationRoute.page,
-              path: 'notification',
+              page: OrdersRoute.page,
+              path: 'orders',
               meta: const {'hideNavBar': true},
             ),
             AutoRoute(

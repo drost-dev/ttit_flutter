@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   final _routes = const [
     HomeRoute(),
     FavouriteRoute(),
-    NotificationRoute(),
+    OrdersRoute(),
     ProfileRoute(),
   ];
 
