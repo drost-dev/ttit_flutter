@@ -1,25 +1,24 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 enum Features {
   bestSeller,
 }
 
-class ProductCard extends Equatable {
-  const ProductCard({
+class Product extends Equatable {
+  const Product({
     required this.id,
     required this.name,
     required this.price,
     this.feature,
-    required this.image,
+    required this.imagePath,
   });
 
   final int id;
   final String name;
   final double price;
   final Features? feature;
-  final Image image;
+  final String imagePath;
 
   @override
-  List<Object?> get props => [name, price, feature, image];
+  List<Object?> get props => [name, price, feature, imagePath];
 }

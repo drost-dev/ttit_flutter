@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/product_card.dart';
+import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/product_card_full.dart';
@@ -16,24 +16,24 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List<ProductCard> products = [
-    ProductCard(
+  List<Product> products = const [
+    Product(
       id: 1,
       name: 'Nike Club Max',
       price: 584.95,
-      image: Image.asset('images/nike1.png'),
+      imagePath: 'images/nike1.png',
     ),
-    ProductCard(
+    Product(
       id: 2,
       name: 'Nike Air Max 200',
       price: 94.05,
-      image: Image.asset('images/nike2.png'),
+      imagePath: 'images/nike2.png',
     ),
-    ProductCard(
+    Product(
       id: 3,
       name: 'Nike Air Max 270 Essential',
       price: 74.95,
-      image: Image.asset('images/nike3.png'),
+      imagePath: 'images/nike3.png',
     ),
   ];
 

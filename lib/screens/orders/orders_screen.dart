@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/order.dart';
+import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/order_card.dart';
 
@@ -15,6 +17,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const Product product = Product(
+      id: -1,
+      name: 'Nike Air Max 270 Essential',
+      price: 260,
+      imagePath: 'images/nike3.png',
+    );
     return Scaffold(
       appBar: AppBar(
         leading: IconButton.filled(
@@ -53,8 +61,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return OrderCard(
-                  orderDate:
-                      DateTime.now().subtract(const Duration(minutes: 7)),
+                  order: Order(
+                    id: 325556516,
+                    product: product,
+                    totalPrice: 364.95,
+                    price: product.price,
+                    orderDate: DateTime.now().subtract(
+                      const Duration(minutes: 7),
+                    ),
+                  ),
                 );
               },
               separatorBuilder: (context, index) {
@@ -77,7 +92,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return OrderCard(
-                  orderDate: DateTime.now().subtract(const Duration(days: 1)),
+                  order: Order(
+                    id: 325556516,
+                    product: product,
+                    totalPrice: 364.95,
+                    price: product.price,
+                    orderDate: DateTime.now().subtract(
+                      const Duration(days: 1),
+                    ),
+                  ),
                 );
               },
               separatorBuilder: (context, index) {

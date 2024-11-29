@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/product_card.dart';
+import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/themes/default.dart';
 
 class ProductCardFull extends StatefulWidget {
   const ProductCardFull({super.key, required this.productCard, this.onDelete});
 
-  final ProductCard productCard;
+  final Product productCard;
   final void Function()? onDelete;
 
   @override
@@ -142,7 +142,9 @@ class _ProductCardFullState extends State<ProductCardFull> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     alignment: Alignment.center,
-                    child: widget.productCard.image,
+                    child: Image.asset(
+                      widget.productCard.imagePath,
+                    ),
                   ),
                   const SizedBox(width: 30),
                   Flexible(

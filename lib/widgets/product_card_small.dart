@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/product_card.dart';
+import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductCardSmall extends StatefulWidget {
   const ProductCardSmall({super.key, this.productCard});
-  final ProductCard? productCard;
+  final Product? productCard;
 
   @override
   State<ProductCardSmall> createState() => _ProductCardSmallState();

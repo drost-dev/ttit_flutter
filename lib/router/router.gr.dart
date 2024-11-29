@@ -48,6 +48,52 @@ class CheckoutRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DetailsOrderScreen]
+class DetailsOrderRoute extends PageRouteInfo<DetailsOrderRouteArgs> {
+  DetailsOrderRoute({
+    Key? key,
+    required Order order,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailsOrderRoute.name,
+          args: DetailsOrderRouteArgs(
+            key: key,
+            order: order,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsOrderRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DetailsOrderRouteArgs>();
+      return DetailsOrderScreen(
+        key: args.key,
+        order: args.order,
+      );
+    },
+  );
+}
+
+class DetailsOrderRouteArgs {
+  const DetailsOrderRouteArgs({
+    this.key,
+    required this.order,
+  });
+
+  final Key? key;
+
+  final Order order;
+
+  @override
+  String toString() {
+    return 'DetailsOrderRouteArgs{key: $key, order: $order}';
+  }
+}
+
+/// generated route for
 /// [DetailsScreen]
 class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
   DetailsRoute({
