@@ -47,6 +47,7 @@ dependencies:
   dotted_line: ^3.2.3
   mask_text_input_formatter: ^2.9.0
   barcode_widget: ^2.0.4
+  flutter_zoom_drawer: ^3.2.0
   # gradient_borders: ^1.0.1
 
 dev_dependencies:

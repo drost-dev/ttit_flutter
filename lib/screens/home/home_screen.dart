@@ -4,6 +4,7 @@ import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/cart_button.dart';
 import 'package:flutter_application_1/widgets/product_card_small.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -26,7 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset('icons/logo.png'),
+              GestureDetector(child: Image.asset('icons/logo.png'), onTap: () {
+                ZoomDrawer.of(context)?.open();
+              },),
               Text(
                 'Главная',
                 style: theme.textTheme.displayMedium,
