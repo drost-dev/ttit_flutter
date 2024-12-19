@@ -12,7 +12,20 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            context.router.back();
+          },
+          icon: ImageIcon(
+            AssetImage('icons/arrow_left.png'),
+          ),
+        ),
+      ),
       body: Center(
         child: Text('Profile Screen'),
       ),

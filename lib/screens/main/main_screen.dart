@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
       angle: -3.43,
       borderRadius: 25,
       menuBackgroundColor: theme.colorScheme.blue,
-      menuScreen: MenuScreen(),
+      menuScreen: const MenuScreen(),
       mainScreen: AutoTabsRouter(
         routes: _routes,
         builder: (context, child) {
