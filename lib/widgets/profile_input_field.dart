@@ -19,7 +19,7 @@ Map<FieldType, Map<Params, dynamic>> settings = {
   FieldType.name: {
     Params.title: 'Ваше имя',
     Params.validator: (String? value) {
-      if (RegExp(r'^[A-Za-zА-Яа-я]+').stringMatch(value ?? '') == value) {
+      if (RegExp(r'^[A-Za-zА-Яа-я]+ ?[A-Za-zА-Яа-я]+').stringMatch(value ?? '') == value) {
         return null;
       } else {
         return 'Введено некорректное имя!';
@@ -70,17 +70,19 @@ Map<FieldType, Map<Params, dynamic>> settings = {
   },
 };
 
-class InputField extends StatelessWidget {
-  const InputField({
+class ProfileInputField extends StatelessWidget {
+  const ProfileInputField({
     super.key,
     required this.fieldKey,
     required this.onChanged,
     required this.type,
+    this.initialValue,
   });
 
   final GlobalKey<FormFieldState> fieldKey;
   final void Function(String)? onChanged;
   final FieldType type;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -93,26 +95,28 @@ class InputField extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // child: Flexible(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
               settings[type]![Params.title],
-              style: theme.textTheme.titleMedium,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: theme.colorScheme.grey,
+              ),
             ),
           ),
           TextFormField(
             key: fieldKey,
+            initialValue: initialValue,
             validator: settings[type]![Params.validator],
             onChanged: onChanged,
             inputFormatters: settings[type]![Params.inputFormatters],
             decoration: InputDecoration(
               hintText: settings[type]![Params.hintText],
-              hintStyle: theme.textTheme.bodySmall!
-                  .apply(letterSpacingDelta: type == FieldType.name ? 2 : 0),
+              hintStyle: theme.textTheme.bodySmall!.apply(
+                letterSpacingDelta: type == FieldType.name ? 2 : 0,
+                color: theme.colorScheme.grey,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
                 borderSide: BorderSide.none,
@@ -125,11 +129,11 @@ class InputField extends StatelessWidget {
               ),
             ),
             obscureText: type == FieldType.password ? true : false,
-            style: theme.textTheme.bodySmall,
+            style: theme.textTheme.bodySmall
+                ?.copyWith(color: theme.colorScheme.black),
           ),
         ],
       ),
-      //),
     );
   }
 }

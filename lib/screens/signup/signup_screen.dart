@@ -4,7 +4,7 @@ import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/signup/bloc/sign_up_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/auth_scaffold.dart';
-import 'package:flutter_application_1/widgets/input_field.dart';
+import 'package:flutter_application_1/widgets/auth_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -110,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InputField(
+                                  AuthInputField(
                                     fieldKey: _nameKey,
                                     onChanged: (value) {
                                       setState(() {
@@ -131,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              InputField(
+                                              AuthInputField(
                                                 fieldKey: _emailKey,
                                                 onChanged: (value) {
                                                   setState(() {
@@ -140,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 },
                                                 type: FieldType.email,
                                               ),
-                                              InputField(
+                                              AuthInputField(
                                                 fieldKey: _passwordKey,
                                                 onChanged: (value) {
                                                   setState(() {

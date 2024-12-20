@@ -6,7 +6,7 @@ import 'package:flutter_application_1/router/router.dart';
 import 'package:flutter_application_1/screens/reset_password/bloc/reset_password_screen_bloc.dart';
 import 'package:flutter_application_1/themes/default.dart';
 import 'package:flutter_application_1/widgets/auth_scaffold.dart';
-import 'package:flutter_application_1/widgets/input_field.dart';
+import 'package:flutter_application_1/widgets/auth_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -166,7 +166,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 ],
                               ),
                             ),
-                            InputField(
+                            AuthInputField(
                               fieldKey: _emailKey,
                               onChanged: (value) {
                                 setState(() {
